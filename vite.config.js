@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve, join } from "path";
+import { resolve, join } from 'path'
+
+import { getEnv } from './script/utils'
+
+const env = getEnv()
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -23,7 +27,7 @@ export default defineConfig(({ mode }) => {
       // host: '0.0.0.0',
       // port: 8090,
       // cors: true,
-      port: +process.env.PORT,
+      port: +env.PORT,
       proxy: {
         '/xxxx': {
           target: 'xxxx',

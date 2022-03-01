@@ -18,6 +18,7 @@ const spinner = ora(`${TAG} Electron main build...`)
 ;(async () => {
   if (argv.watch) {
     // Wait on vite server launched
+    console.log('--------------', env.PORT)
     await waitOn({ port: env.PORT as string })
 
     const watcher = watch(opt)

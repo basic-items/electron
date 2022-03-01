@@ -1,10 +1,3 @@
-/*
- * @Description: rollup 打包配置
- * @Author: renlu
- * @Date: 2021-09-18 18:22:38
- * @LastEditTime: 2021-11-15 18:36:52
- * @LastEditors: renlu
- */
 import path from 'path'
 import { RollupOptions } from 'rollup'
 import copy from 'rollup-plugin-copy'
@@ -18,11 +11,11 @@ import { builtins, getEnv } from './utils'
 
 export interface ConfigOptions {
   env?: typeof process.env.NODE_ENV
-  proc: 'main' | 'render' | 'preload'
+  proc: 'main' | 'src' | 'preload'
 }
 
 export default function (opts: ConfigOptions) {
-  const sourcemap = opts.proc === 'render'
+  const sourcemap = opts.proc === 'src'
   const options: RollupOptions = {
     input: path.join(__dirname, `../${opts.proc}/index.ts`),
     output: {

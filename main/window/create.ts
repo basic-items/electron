@@ -1,13 +1,6 @@
-/*
- * @Description: 创建窗口的方法
- * @Author: renlu
- * @Date: 2021-09-26 11:06:02
- * @LastEditTime: 2021-10-20 14:08:16
- * @LastEditors: renlu
- */
 import { app, BrowserWindow } from 'electron'
 
-const path = require('path')
+import path from 'path'
 
 // 取消右键上下文菜单
 function preventDragbarContext(win: BrowserWindow) {

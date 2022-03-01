@@ -1,15 +1,8 @@
-/*
- * @Description: 设置托盘图标与菜单
- * @Author: renlu
- * @Date: 2021-09-26 11:08:49
- * @LastEditTime: 2021-11-16 09:57:53
- * @LastEditors: renlu
- */
 import { app, Tray, Menu, BrowserWindow } from 'electron'
 import createWindow from './create'
 import { options as allWindow } from './options'
 
-const path = require('path')
+import path from 'path'
 
 let appTray: Tray
 export function setTray(): Tray {
