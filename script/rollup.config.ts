@@ -42,8 +42,7 @@ export default function (opts: ConfigOptions) {
       copy({
         // 复制 favicon.ico 到指定目录
         targets: [
-          { src: 'favicon.ico', dest: 'dist' },
-          { src: 'favicon.png', dest: 'dist' }
+          { src: 'favicon.ico', dest: 'dist' }
         ]
       }),
       replace({
