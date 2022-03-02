@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 
 import store from './store'
 import route from './router'
@@ -9,7 +9,7 @@ import App from './App.vue'
 const { routes, beforeEach, afterEach } = route
   
 const router = createRouter({
-  history: createWebHistory('/'),
+  history: createWebHashHistory('/'),
   routes
 })
 router.beforeEach((to, from, next) => {

@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [vue()],
     // root: join(__dirname, 'render'),
-    // base: './',
+    base: './',
     build: {
       outDir: join(__dirname, 'dist/render'),
       emptyOutDir: true,
