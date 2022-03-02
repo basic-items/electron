@@ -9,7 +9,7 @@ import App from './App.vue'
 const { routes, beforeEach, afterEach } = route
   
 const router = createRouter({
-  history: createWebHashHistory('/'),
+  history: createWebHistory('/'),
   routes
 })
 router.beforeEach((to, from, next) => {
