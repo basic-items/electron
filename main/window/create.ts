@@ -34,7 +34,7 @@ export default function createWindow(
     })
   } else {
     win.webContents.openDevTools()
-    win.loadURL(`http://localhost:${process.env.PORT}/#${hash}`)
+    win.loadURL(`http://localhost:${process.env.PORT}/${hash}`)
   }
 
   return win

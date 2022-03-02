@@ -36,7 +36,7 @@ export default function (opts: ConfigOptions) {
       alias({
         entries: {
           '@root': path.join(__dirname, '..'),
-          '@': path.join(__dirname, '../src')
+          '@': path.join(__dirname, '../render')
         }
       }),
       copy({

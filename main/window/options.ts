@@ -13,7 +13,7 @@ export const options: allWindowType = {
       backgroundColor: '#fff',
       icon: 'dist/favicon.png'
     },
-    hash: '/defaultWin'
+    hash: '/'
   },
   menuOne: {
     window: {
@@ -29,6 +29,6 @@ export const options: allWindowType = {
       frame: true,
       skipTaskbar: false
     },
-    hash: '/menuOne'
+    hash: '/webRtc'
   }
 }
