@@ -11,11 +11,11 @@ import { builtins, getEnv } from './utils'
 
 export interface ConfigOptions {
   env?: typeof process.env.NODE_ENV
-  proc: 'main' | 'src' | 'preload'
+  proc: 'main' | 'render' | 'preload'
 }
 
 export default function (opts: ConfigOptions) {
-  const sourcemap = opts.proc === 'src'
+  const sourcemap = opts.proc === 'render'
   const options: RollupOptions = {
     input: path.join(__dirname, `../${opts.proc}/index.ts`),
     output: {
@@ -41,7 +41,10 @@ export default function (opts: ConfigOptions) {
       }),
       copy({
         // 复制 favicon.ico 到指定目录
-        targets: [{ src: 'favicon.ico', dest: 'dist' }]
+        targets: [
+          { src: 'favicon.ico', dest: 'dist' },
+          { src: 'favicon.png', dest: 'dist' }
+        ]
       }),
       replace({
         ...Object.entries({ ...getEnv(), NODE_ENV: opts.env }).reduce(

@@ -11,7 +11,7 @@ export const options: allWindowType = {
       useContentSize: true,
       frame: true,
       backgroundColor: '#fff',
-      icon: 'dist/favicon.ico'
+      icon: 'dist/favicon.png'
     },
     hash: '/defaultWin'
   },
@@ -24,7 +24,7 @@ export const options: allWindowType = {
       useContentSize: true,
       backgroundColor: '#fff',
       title: '菜单一',
-      icon: 'dist/favicon.ico',
+      icon: 'dist/favicon.png',
       maximizable: false,
       frame: true,
       skipTaskbar: false

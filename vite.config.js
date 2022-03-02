@@ -10,6 +10,8 @@ const env = getEnv()
 export default defineConfig(({ mode }) => {
   return {
     plugins: [vue()],
+    // root: join(__dirname, 'render'),
+    // base: './',
     build: {
       outDir: join(__dirname, 'dist/render'),
       emptyOutDir: true,

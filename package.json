@@ -41,8 +41,8 @@
     "@vitejs/plugin-vue": "^2.0.0",
     "chalk": "^4.1.2",
     "concurrently": "^7.0.0",
-    "electron": "^15.0.0-beta.3",
-    "electron-builder": "^22.10.5",
+    "electron": "^17.1.0",
+    "electron-builder": "^22.14.13",
     "minimist": "^1.2.5",
     "ora": "^5.4.1",
     "rimraf": "^3.0.2",
@@ -58,15 +58,16 @@
     "asar": true,
     "copyright": "",
     "directories": {
+      "buildResources": "build",
       "output": "release/${version}"
     },
     "nsis": {
       "oneClick": false,
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "dist/favicon.ico",
-      "uninstallerIcon": "dist/favicon.ico",
-      "installerHeaderIcon": "dist/favicon.ico",
+      "installerIcon": "dist/favicon.png",
+      "uninstallerIcon": "dist/favicon.png",
+      "installerHeaderIcon": "dist/favicon.png",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "rabbit",
@@ -88,7 +89,7 @@
       ]
     },
     "win": {
-      "icon": "dist/favicon.ico",
+      "icon": "dist/favicon.png",
       "requestedExecutionLevel": "requireAdministrator",
       "target": [
         {
