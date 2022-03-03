@@ -11,20 +11,20 @@ export const options: allWindowType = {
       useContentSize: true,
       frame: true,
       backgroundColor: '#fff',
-      icon: 'dist/favicon.png'
+      icon: 'favicon.ico'
     },
     hash: '/'
   },
   menuOne: {
     window: {
-      width: 400,
-      height: 250,
+      width: 1000,
+      height: 600,
       resizable: false,
       center: true,
       useContentSize: true,
       backgroundColor: '#fff',
       title: '菜单一',
-      icon: 'dist/favicon.png',
+      icon: 'favicon.ico',
       maximizable: false,
       frame: true,
       skipTaskbar: false

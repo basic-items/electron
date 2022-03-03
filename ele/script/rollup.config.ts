@@ -36,13 +36,14 @@ export default function (opts: ConfigOptions) {
       alias({
         entries: {
           '@root': path.join(__dirname, '..'),
-          '@': path.join(__dirname, '../render')
+          '@': path.join(__dirname, '../../src')
         }
       }),
       copy({
         // 复制 favicon.ico 到指定目录
         targets: [
-          { src: 'favicon.ico', dest: 'dist' }
+          { src: '../build/favicon.ico', dest: 'dist' },
+          { src: '../build/favicon.png', dest: 'dist' }
         ]
       }),
       replace({

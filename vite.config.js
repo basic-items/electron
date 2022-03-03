@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve, join } from 'path'
 
-import { getEnv } from './script/utils'
+import { getEnv } from './ele/script/utils'
 
 const env = getEnv()
 
@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
     // root: join(__dirname, 'render'),
     base: './',
     build: {
-      outDir: join(__dirname, 'dist/render'),
+      outDir: join(__dirname, 'dist'),
       emptyOutDir: true,
       minify: false,
       commonjsOptions: {},

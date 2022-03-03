@@ -29,7 +29,7 @@ export default function createWindow(
   preventDragbarContext(win)
 
   if (app.isPackaged) {
-    win.loadFile(path.join(__dirname, '../render/index.html'), {
+    win.loadFile(path.join(__dirname, '../../../dist/index.html'), {
       hash
     })
   } else {

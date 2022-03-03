@@ -1,7 +1,7 @@
 {
-  "name": "cc",
+  "name": "stroll",
   "version": "0.0.0",
-  "main": "dist/main/index.js",
+  "main": "ele/dist/main/index.js",
   "license": "MIT",
   "author": "stroll",
   "description": "-_-",
@@ -10,13 +10,13 @@
     "-----": "-------------------------------------------------",
     "dev": "concurrently -n=R,P,M -c=green,yellow,blue \"npm run dev:render\" \"npm run dev:preload\" \"npm run dev:main\"",
     "dev:render": "vite",
-    "dev:preload": "node -r ts-node/register script/build-preload --env=development --watch",
-    "dev:main": "node -r ts-node/register script/build-main --env=development --watch",
+    "dev:preload": "node -r ts-node/register ele/script/build-preload --env=development --watch",
+    "dev:main": "node -r ts-node/register ele/script/build-main --env=development --watch",
     "------": "-------------------------------------------------",
     "build:render": "vite build",
-    "build:preload": "node -r ts-node/register script/build-preload --env=production",
-    "build:main": "node -r ts-node/register script/build-main --env=production",
-    "build": "rimraf dist && npm run build:render && npm run build:preload && npm run build:main",
+    "build:preload": "node -r ts-node/register ele/script/build-preload --env=production",
+    "build:main": "node -r ts-node/register ele/script/build-main --env=production",
+    "build": "rimraf dist ele/dist && npm run build:render && npm run build:preload && npm run build:main",
     "-------": "-------------------------------------------------",
     "win32": "npm run build && electron-builder --win --ia32",
     "win64": "npm run build && electron-builder --win --x64",
@@ -54,12 +54,12 @@
     "vite": "^2.7.2"
   },
   "build": {
-    "appId": "com.app.rabbit",
+    "appId": "com.app.stroll",
     "asar": true,
     "copyright": "",
     "directories": {
-      "buildResources": "build",
-      "output": "release/${version}"
+      "buildResources": "ele/build",
+      "output": "packageInst/${version}"
     },
     "nsis": {
       "oneClick": false,
@@ -89,7 +89,7 @@
       ]
     },
     "win": {
-      "icon": "dist/favicon.png",
+      "icon": "ele/build/favicon.png",
       "requestedExecutionLevel": "requireAdministrator",
       "target": [
         {

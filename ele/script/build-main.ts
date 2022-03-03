@@ -7,7 +7,7 @@ import chalk from 'chalk'
 import ora from 'ora'
 import { waitOn, getEnv } from './utils'
 import options from './rollup.config'
-import { main } from '../package.json'
+import { main } from '../../package.json'
 
 const env = getEnv()
 const argv = minimist(process.argv.slice(2))

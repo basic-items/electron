@@ -23,7 +23,7 @@ export function setTray(): Tray {
     }
   ]
   // 创建托盘实例
-  const iconPath = path.join(__dirname, '../favicon.png')
+  const iconPath = path.join(__dirname, '../../build/favicon.png')
   appTray = new Tray(iconPath)
 
   // 图标的上下文菜单
