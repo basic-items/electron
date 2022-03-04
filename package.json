@@ -16,7 +16,7 @@
     "build:render": "vite build",
     "build:preload": "node -r ts-node/register ele/script/build-preload --env=production",
     "build:main": "node -r ts-node/register ele/script/build-main --env=production",
-    "build": "rimraf dist ele/dist && npm run build:render && npm run build:preload && npm run build:main",
+    "build": "rimraf dist ele/dist packageInst && npm run build:render && npm run build:preload && npm run build:main",
     "-------": "-------------------------------------------------",
     "win32": "npm run build && electron-builder --win --ia32",
     "win64": "npm run build && electron-builder --win --x64",
@@ -59,18 +59,18 @@
     "copyright": "",
     "directories": {
       "buildResources": "ele/build",
-      "output": "packageInst/${version}"
+      "output": "packageInst"
     },
     "nsis": {
       "oneClick": false,
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "favicon.ico",
-      "uninstallerIcon": "favicon.ico",
-      "installerHeaderIcon": "favicon.ico",
+      "installerIcon": "./ele/build/favicon.ico",
+      "uninstallerIcon": "./ele/build/favicon.ico",
+      "installerHeaderIcon": "./ele/build/favicon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "rabbit",
+      "shortcutName": "stroll",
       "deleteAppDataOnUninstall": true,
       "include": "./installer.nsh"
     },
@@ -89,7 +89,7 @@
       ]
     },
     "win": {
-      "icon": "ele/build/favicon.png",
+      "icon": "./ele/build/favicon.png",
       "requestedExecutionLevel": "requireAdministrator",
       "target": [
         {

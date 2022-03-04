@@ -7,7 +7,6 @@ import chalk from 'chalk'
 import ora from 'ora'
 import { waitOn, getEnv } from './utils'
 import options from './rollup.config'
-import { main } from '../../package.json'
 
 const env = getEnv()
 const argv = minimist(process.argv.slice(2))
@@ -30,7 +29,7 @@ const spinner = ora(`${TAG} Electron main build...`)
     watcher.on('event', (ev) => {
       if (ev.code === 'END') {
         if (child) child.kill()
-        child = spawn(electron as unknown as string, [path.join(__dirname, `../${main}`)], {
+        child = spawn(electron as unknown as string, [path.join(__dirname, `../dist/main/index.js`)], {
           stdio: 'inherit'
         })
       } else if (ev.code === 'ERROR') {
