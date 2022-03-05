@@ -1,26 +1,58 @@
-import { setTray, createDefaultWindow } from './window'
-import { app, Menu, ipcMain } from 'electron'
+/**
+ * electron 主文件
+ */
+import '../common/patch'
+import { join } from 'path'
+import { app, BrowserWindow } from 'electron'
+import './config'
 
-// 关闭菜单栏
-Menu.setApplicationMenu(null)
+let win: BrowserWindow
 
-// 应用程序单开模式
-const gotTheLock = app.requestSingleInstanceLock()
-if (!gotTheLock) app.quit()
-
-app.whenReady().then(() => {
-  setTray() // 设置托盘图标与菜单
-
-  const defaultWindow = createDefaultWindow() // 创建默认窗口
-
-  // 监听渲染进程崩溃或被杀死，重新运行程序
-  defaultWindow.webContents.on('render-process-gone', () => {
-    app.relaunch()
-    app.exit(0)
+function createWin() {
+  // 创建浏览器窗口
+  win = new BrowserWindow({
+    width: 1080,
+    height: 720,
+    useContentSize: true,
+    frame: true, // 显示标题栏
+    center: true,
+    focusable: true,
+    show: true,
+    autoHideMenuBar: true,
+    webPreferences: {
+      webSecurity: false,
+      devTools: true,
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true,
+      nodeIntegrationInSubFrames: true,
+      contextIsolation: false,
+      preload: join(__dirname, '../../ele/preload/index.js'),
+      nativeWindowOpen: true,
+      webviewTag: true
+    }
   })
+  const URL = app.isPackaged
+    ? `file://${join(__dirname, '../render/index.html')}` // vite 构建后的静态文件地址
+    : `http://localhost:${process.env.PORT}` // vite 启动的服务器地址
+
+  win?.loadURL(URL)
+
+  // @ts-ignore
+  if (process.env.NODE_ENV === 'development') win.openDevTools()
+
+  win.setMenu(null)
+}
+
+app.whenReady().then(createWin)
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
 })
 
-// 所有窗口关闭，移除所有监听器，程序不退出
-app.on('window-all-closed', () => {
-  ipcMain.removeAllListeners()
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWin()
+  }
 })

@@ -1,108 +1,113 @@
 {
-  "name": "stroll",
+  "name": "electron-stroll",
   "version": "0.0.0",
-  "main": "ele/dist/main/index.js",
+  "main": "dist/main/index.js",
   "license": "MIT",
   "author": "stroll",
   "description": "-_-",
   "scripts": {
-    "preview": "vite preview",
-    "-----": "-------------------------------------------------",
-    "dev": "concurrently -n=R,P,M -c=green,yellow,blue \"npm run dev:render\" \"npm run dev:preload\" \"npm run dev:main\"",
-    "dev:render": "vite",
-    "dev:preload": "node -r ts-node/register ele/script/build-preload --env=development --watch",
-    "dev:main": "node -r ts-node/register ele/script/build-main --env=development --watch",
-    "------": "-------------------------------------------------",
-    "build:render": "vite build",
-    "build:preload": "node -r ts-node/register ele/script/build-preload --env=production",
-    "build:main": "node -r ts-node/register ele/script/build-main --env=production",
-    "build": "rimraf dist ele/dist packageInst && npm run build:render && npm run build:preload && npm run build:main",
-    "-------": "-------------------------------------------------",
-    "win32": "npm run build && electron-builder --win --ia32",
-    "win64": "npm run build && electron-builder --win --x64",
-    "mac": "npm run build && electron-builder --mac",
-    "linux": "npm run build && electron-builder --linux"
-  },
-  "dependencies": {
-    "@stroll/db": "0.0.0",
-    "vue": "^3.2.25",
-    "vue-router": "^4.0.12",
-    "vuex": "^4.0.2"
-  },
-  "devDependencies": {
-    "@rollup/plugin-alias": "^3.1.9",
-    "@rollup/plugin-commonjs": "^21.0.2",
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.1.3",
-    "@rollup/plugin-replace": "^4.0.0",
-    "@rollup/plugin-typescript": "^8.3.1",
-    "@types/minimist": "^1.2.2",
-    "@types/node": "^17.0.21",
-    "@vitejs/plugin-vue": "^2.0.0",
-    "chalk": "^4.1.2",
-    "concurrently": "^7.0.0",
-    "electron": "^17.1.0",
-    "electron-builder": "^22.14.13",
-    "minimist": "^1.2.5",
-    "ora": "^5.4.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.68.0",
-    "rollup-plugin-copy": "^3.4.0",
-    "stylus": "^0.56.0",
-    "ts-node": "^10.5.0",
-    "typescript": "^4.6.2",
-    "vite": "^2.7.2"
+    "dev-_-": "-----------",
+    "dev": "cross-env NODE_ENV=development&& concurrently -n=vue,ele -c=green,blue \"npm run dev:vue\" \"npm run dev:ele\"",
+    "dev:vue": "vite",
+    "dev:ele": "node -r ts-node/register script/build-main --env=development --watch",
+    "build-_-": "-----------",
+    "build": "rimraf dist build && npm run build:vue && npm run build:ele && electron-builder",
+    "build:vue": "vite build",
+    "build:ele": "node -r ts-node/register script/build-main --env=production",
+    "build:dir": "electron-builder --dir"
   },
   "build": {
-    "appId": "com.app.stroll",
-    "asar": true,
-    "copyright": "",
+    "productName": "electron-stroll",
+    "appId": "com.szz.electron-stroll",
+    "asar": false,
+    "files": [
+      "dist/**"
+    ],
     "directories": {
-      "buildResources": "ele/build",
-      "output": "packageInst"
+      "output": "build"
     },
-    "nsis": {
-      "oneClick": false,
-      "allowElevation": true,
-      "allowToChangeInstallationDirectory": true,
-      "installerIcon": "./ele/build/favicon.ico",
-      "uninstallerIcon": "./ele/build/favicon.ico",
-      "installerHeaderIcon": "./ele/build/favicon.ico",
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true,
-      "shortcutName": "stroll",
-      "deleteAppDataOnUninstall": true,
-      "include": "./installer.nsh"
+    "extraResources": {
+      "from": "ele/preload",
+      "to": "app/ele/preload"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
+        }
+      ]
     },
     "mac": {
       "artifactName": "${productName}_${version}.${ext}",
       "target": [
         "dmg"
-      ]
-    },
-    "linux": {
-      "artifactName": "${productName}_${version}.${ext}",
-      "target": [
-        "deb",
-        "rpm",
-        "AppImage"
-      ]
+      ],
+      "icon": "icons/icon.icns"
     },
     "win": {
-      "icon": "./ele/build/favicon.png",
-      "requestedExecutionLevel": "requireAdministrator",
+      "icon": "icons/icon.ico",
       "target": [
         {
-          "target": "nsis"
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "artifactName": "${productName}_${version}.${ext}",
-      "extraFiles": [
-        {
-          "from": "./config.json",
-          "to": "config.json"
-        }
-      ]
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "linux": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false
     }
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "3.1.4",
+    "@rollup/plugin-commonjs": "19.0.1",
+    "@rollup/plugin-json": "4.1.0",
+    "@rollup/plugin-node-resolve": "13.0.2",
+    "@rollup/plugin-typescript": "^8.2.5",
+    "@types/blueimp-md5": "^2.18.0",
+    "@types/minimist": "1.2.2",
+    "@types/wavesurfer.js": "^5.1.0",
+    "@vitejs/plugin-vue": "^2.2.4",
+    "acorn": "8.4.1",
+    "chalk": "4.1.1",
+    "concurrently": "6.2.0",
+    "cross-env": "7.0.3",
+    "electron": "^17.1.0",
+    "electron-builder": "22.11.7",
+    "electron-builder-squirrel-windows": "22.11.8",
+    "minimist": "1.2.5",
+    "ora": "5.4.1",
+    "rimraf": "3.0.2",
+    "rollup-plugin-esbuild": "4.5.0",
+    "stylus": "0.54.8",
+    "stylus-loader": "6.1.0",
+    "ts-node": "10.1.0",
+    "typescript": "4.3.5",
+    "vite": "^2.8.6",
+    "vitejs-plugin-electron": "0.1.3"
+  },
+  "dependencies": {
+    "@stroll/db": "0.0.0",
+    "axios": "^0.26.0",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.13",
+    "vuex": "^4.0.2"
   }
 }

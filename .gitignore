@@ -3,5 +3,6 @@ node_modules
 dist
 dist-ssr
 release
+build
 packageInst
 *.local

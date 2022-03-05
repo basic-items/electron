@@ -1,35 +1,22 @@
+require('dotenv').config({ path: resolve(__dirname, '.env') })
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve, join } from 'path'
+import { resolve } from 'path'
+import electron from 'vitejs-plugin-electron'
 
-import { getEnv } from './ele/script/utils'
+const root = resolve(__dirname, './')
 
-const env = getEnv()
-
-// https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
+export default defineConfig(env => {
   return {
-    plugins: [vue()],
-    // root: join(__dirname, 'render'),
-    base: './',
-    build: {
-      outDir: join(__dirname, 'dist'),
-      emptyOutDir: true,
-      minify: false,
-      commonjsOptions: {},
-      sourcemap: true
-    },
-    resolve: {
-      extensions: ['.js', '.ts', '.vue', '.json'],
-      alias: {
-        '@': resolve('src'),
-      },
-    },
+    plugins: [
+      vue(),
+      electron(),
+    ],
+    root,
+    base: './', // index.html 中静态资源加载位置
     server: {
-      // host: '0.0.0.0',
-      // port: 8090,
-      // cors: true,
-      port: +env.PORT,
+      port: +process.env.PORT,
       proxy: {
         '/xxxx': {
           target: 'xxxx',
@@ -38,6 +25,22 @@ export default defineConfig(({ mode }) => {
           rewrite: (path) => path.replace(/^\/xxxx/, ''),
         },
       },
+    },
+    resolve: {
+      extensions: ['.js', '.ts', '.vue', '.json', '.mjs'],
+      alias: {
+        '@': resolve(__dirname, 'src'),
+        '@main': resolve(__dirname, 'ele/main'),
+        '@root': __dirname,
+      },
+    },
+    build: {
+      outDir: resolve(__dirname, 'dist/render'),
+      emptyOutDir: true,
+      minify: false,
+      commonjsOptions: {},
+      assetsDir: '', // 相对路径 加载问题
+      sourcemap: true,
     },
   }
 })
