@@ -1,26 +1,25 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-
-import store from './store'
-import route from './router'
-import Api from './api'
+import { routes, beforeEach, afterEach } from "./router"
+import store from "./store"
+import API from './api'
 import App from './App.vue'
 
-const { routes, beforeEach, afterEach } = route
-  
+import './assets/stylus/Init.styl'
+
 const router = createRouter({
   history: createWebHistory('/'),
   routes
 })
-router.beforeEach((to, from, next) => {
+router.beforeEach((to: any, from: any, next: any) => {
   beforeEach(to, from, next)
 })
 router.afterEach(() => {
   afterEach()
 })
 
-const instance = createApp(App)
-  .use(Api)
+createApp(App)
+  .use(API)
   .use(router)
   .use(store)
-  .mount('#app')
+  .mount("#app")

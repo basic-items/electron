@@ -1,4 +1,4 @@
-const children = [
+const children: any = [
   {
     path: "/overview",
     name: "Overview",

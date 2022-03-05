@@ -1,9 +1,9 @@
 import { createStore } from 'vuex'
 import { state, getters } from './variable'
 import { mutations, actions } from './method'
-const modulesFiles = import.meta.globEager('./modules/*.js')
-const modules = {}
-Object.keys(modulesFiles).forEach((key) => {
+const modulesFiles: any = import.meta.globEager('./modules/*.ts')
+const modules: any = {}
+Object.keys(modulesFiles).forEach((key: string) => {
   const module = modulesFiles[key].default
   const moduleKey = `${key.replace(/(\.\/|\.js)/g, "")}`
 
@@ -11,7 +11,7 @@ Object.keys(modulesFiles).forEach((key) => {
   modules[module.name || moduleKey]["namespaced"] = true
 })
 
-const store = createStore({
+const store: any = createStore({
   state,
   getters,
   mutations,

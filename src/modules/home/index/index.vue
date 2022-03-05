@@ -3,19 +3,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, getCurrentInstance } from 'vue'
+import { ref } from 'vue'
 
-
-import { layout } from './variable'
-import {  } from './method'
-
-onMounted(() => {
-  // training()
-})
 defineProps({
   msg: String
 })
 
+const count = ref(0)
 </script>
 
 <style scoped lang="stylus"></style>
