@@ -2,8 +2,6 @@
   "name": "electron-stroll",
   "version": "0.0.0",
   "main": "dist/main/index.js",
-  "license": "MIT",
-  "author": "stroll",
   "description": "-_-",
   "scripts": {
     "dev-_-": "-----------",
@@ -110,5 +108,15 @@
     "vue": "^3.2.31",
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2"
-  }
+  },
+  "author": "stroll",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basic-items/electron-vue3-vite-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/basic-items/electron-vue3-vite-ts/issues"
+  },
+  "homepage": "https://github.com/basic-items/electron-vue3-vite-ts#readme"
 }
