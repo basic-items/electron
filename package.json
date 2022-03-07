@@ -70,8 +70,7 @@
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": true,
-      "deleteAppDataOnUninstall": false,
-      "include": "./include.nsh"
+      "deleteAppDataOnUninstall": false
     }
   },
   "devDependencies": {

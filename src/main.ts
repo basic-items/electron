@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import naiveUi from 'naive-ui'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes, beforeEach, afterEach } from "./router"
 import store from "./store"
@@ -20,6 +21,7 @@ router.afterEach(() => {
 
 createApp(App)
   .use(API)
+  .use(naiveUi)
   .use(router)
   .use(store)
   .mount("#app")
