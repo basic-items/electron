@@ -25,12 +25,11 @@ export default function createWin() {
       webviewTag: true
     }
   })
-  console.log(join(__dirname, '../render/index.html'));
-  const URL = app.isPackaged
-    ? `file://${join(__dirname, '../render/index.html')}` // vite 构建后的静态文件地址
-    : `http://localhost:${process.env.PORT}` // vite 启动的服务器地址
-
-  win?.loadURL(URL)
+  if (app.isPackaged) {
+    win.loadFile(join(__dirname, '../render/index.html'))
+  } else {
+    win?.loadURL(`http://localhost:${process.env.PORT}`) // vite 启动的服务器地址
+  }
 
   // @ts-ignore
   if (process.env.NODE_ENV === 'development') win.openDevTools()
