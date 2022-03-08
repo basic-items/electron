@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "main": "dist/main/index.js",
   "description": "-_-",
+  "author": "stroll",
+  "license": "MIT",
   "scripts": {
     "dev-_-": "-----------",
     "dev": "cross-env NODE_ENV=development&& concurrently -n=vue,ele -c=green,blue \"npm run dev:vue\" \"npm run dev:ele\"",
@@ -106,6 +108,8 @@
     "typescript": "4.3.5",
     "vite": "^2.8.6",
     "vitejs-plugin-electron": "0.1.3",
+  },
+  "dependencies": {
     "@stroll/db": "0.0.0",
     "axios": "^0.26.0",
     "naive-ui": "^2.26.0",
@@ -113,10 +117,6 @@
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2"
   },
-  "dependencies": {
-  },
-  "author": "stroll",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/basic-items/electron-vue3-vite-ts.git"
