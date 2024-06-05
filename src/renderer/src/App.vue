@@ -13,7 +13,7 @@
   &nbsp;&nbsp;&nbsp;
   <router-link :to="{ path: '/overview' }" >概览</router-link>
   &nbsp;&nbsp;&nbsp;
-  <router-link :to="{ path: '/webRtc' }" >端对端</router-link>
+  <router-link :to="{ path: '/localStorage' }" >本地存储</router-link>
   <router-view></router-view>
   <div id="cnbi-viewport"></div></div>
 </template>

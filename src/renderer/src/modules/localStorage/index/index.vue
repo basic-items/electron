@@ -1,13 +1,12 @@
 <template>
-  <h1>WebRtc</h1>
-  
+  <h1>localStorage</h1>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, getCurrentInstance } from 'vue'
 
 import {  } from './variable'
-import {  } from './method'
+import {} from './method'
 
 const { props } = getCurrentInstance()
 
