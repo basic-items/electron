@@ -89,7 +89,7 @@ const get = () => {
     }
   }
 }
-const deleteDb = async () => {
+const deleteDb = () => {
   const openReq = window.indexedDB.deleteDatabase('test')
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   openReq.onerror = function (ev) {
@@ -97,7 +97,7 @@ const deleteDb = async () => {
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   openReq.onsuccess = function (ev) {
-    tip.innerText = "删除数据库成功";
+    customerData.value = "删除数据库成功";
   };
   // const dbs = await window.indexedDB.databases()
   // dbs.forEach((db) => {
